@@ -3,8 +3,10 @@ from deepface import DeepFace
 import cv2
 import numpy as np
 import logging
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app)
 
 logging.basicConfig(level=logging.DEBUG)
 

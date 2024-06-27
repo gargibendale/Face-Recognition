@@ -1,4 +1,6 @@
 flask
+flask-cors
+tf-keras
 deepface
 opencv-python-headless
 numpy
