@@ -29,7 +29,7 @@ def save():
         if img is None:
             return jsonify({'status': 'fail', 'message': 'Invalid image data'}), 400
         
-        new_image_path = f'{user_name}.jpg'
+        new_image_path = f'api/{user_name}.jpg'
         cv2.imwrite(new_image_path, img)
         return jsonify({'status': 'success', 'message': f'Image saved as {new_image_path}'})
     
@@ -57,11 +57,11 @@ def recognize():
             return jsonify({'status': 'fail', 'message': 'Invalid image data'}), 400
         
         # Save the captured image temporarily
-        captured_image_path = 'captured_image.jpg'
+        captured_image_path = 'api/captured_image.jpg'
         cv2.imwrite(captured_image_path, img)
 
         # Path to the known image
-        known_image_path = f'{user_name}.jpg'  # Change this to the path of your known image
+        known_image_path = f'api/{user_name}.jpg'  # Change this to the path of your known image
         print(known_image_path)
         
         # Perform face verification
