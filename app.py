@@ -10,6 +10,44 @@ CORS(app)
 
 logging.basicConfig(level=logging.DEBUG)
 
+@app.route('/detect_emotion', methods=['POST'])
+def detect():
+    if 'image' not in request.files:
+        print('Image not provided')
+        return jsonify({
+            'status': 'fail', 'message': 'Image not provided'
+        }), 400
+    file = request.files['image']
+
+    if not file:
+        print('Image not as file')
+        return jsonify({'status': 'fail', 'message': 'Invalid image data'}), 400
+    
+    try:
+        # Read the image in OpenCV format
+        file_bytes = np.frombuffer(file.read(), np.uint8)
+        img = cv2.imdecode(file_bytes, cv2.IMREAD_COLOR)
+        
+        if img is None:
+            print('No image')
+            return jsonify({'status': 'fail', 'message': 'Invalid image data'}), 400
+        
+        new_image_path = f'api/detect_emotion.jpg'
+        cv2.imwrite(new_image_path, img)
+
+        objs = DeepFace.analyze(
+        img_path = new_image_path, 
+        actions = ['age', 'gender', 'race', 'emotion'],
+        )
+
+        print(objs)
+        return jsonify({'status': 'success', 'message': 'emotion detected'})
+
+    except Exception as e:
+        app.logger.error(f'Error processing image: {e}')
+        return jsonify({'status': 'error', 'message': str(e)}), 500
+
+
 @app.route('/save_faceimage', methods=['POST'])
 def save():
     if 'image' not in request.files or 'name' not in request.form:
