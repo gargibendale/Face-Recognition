@@ -37,7 +37,7 @@ def detect():
 
         objs = DeepFace.analyze(
         img_path = new_image_path, 
-        actions = ['age', 'gender', 'race', 'emotion'],
+        actions = ['emotion'],
         )
 
         print(objs)
