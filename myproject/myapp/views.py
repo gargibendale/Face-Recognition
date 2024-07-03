@@ -1,6 +1,8 @@
 import json
 from django.shortcuts import render
 
+##ngrok run command ------> ngrok http --domain=tightly-daring-killdeer.ngrok-free.app http://127.0.0.1:8000/
+
 # Create your views here.
 from django.http import JsonResponse
 import base64

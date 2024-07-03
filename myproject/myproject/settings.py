@@ -25,7 +25,9 @@ SECRET_KEY = 'django-insecure-+n)cvfb!hs5p3)6mrqk2c1dz=3y78rxf7j+cf0#z2&tv&@n+2m
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'tightly-daring-killdeer.ngrok-free.app'
+]
 
 
 # Application definition
